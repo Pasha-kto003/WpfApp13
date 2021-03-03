@@ -5,7 +5,7 @@ using System.Windows.Controls;
 
 namespace WpfApp13
 {
-    public class MainVM
+    public class MainVM : Mvvm1125.MvvmNotify
     {
         Model model;
 
@@ -22,6 +22,7 @@ namespace WpfApp13
         private void PageContainer_CurrentPageChanged(object sender, PageType e)
         {
             CurrentPage = PageContainer.GetPageByType(e);
+            NotifyPropertyChanged("CurrentPage");
         }
     }
 }

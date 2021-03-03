@@ -18,7 +18,39 @@ namespace WpfApp13
         public void SetModel(Model model)
         {
             this.model = model;
-            CreateItem = new Mvvm1125.MvvmCommand(() => { model.TryJoin(FirstItem, SecondItem); }, () => FirstItem != null && SecondItem != null);
+            CreateItem = new Mvvm1125.MvvmCommand(
+                () => { 
+                    if(model.TryJoin(FirstItem, SecondItem)) 
+                        PageContainer.ChangePageTo(PageType.ListItems); }, 
+                () => FirstItem != null && SecondItem != null);
+            BaseItems = new List<BaseItem>();
+            BaseItems.Add(new BaseItem { 
+                Name = "Корень имбиря", 
+                CreateBaseItem = new Mvvm1125.MvvmCommand(
+                    () => model.AddItem(new Item { Name = "Корень имбиря"}),
+                    () => true)
+            });
+            BaseItems.Add(new BaseItem
+            {
+                Name = "Хлеб",
+                CreateBaseItem = new Mvvm1125.MvvmCommand(
+                    () => model.AddItem(new Item { Name = "Хлеб" }),
+                    () => true)
+            });
+            BaseItems.Add(new BaseItem
+            {
+                Name = "Шерсть",
+                CreateBaseItem = new Mvvm1125.MvvmCommand(
+                    () => model.AddItem(new Item { Name = "Шерсть" }),
+                    () => true)
+            });
+            model.ItemsChanged += Model_ItemsChanged;
+        }
+
+        private void Model_ItemsChanged(object sender, EventArgs e)
+        {
+            Items = model.GetItems();
+            NotifyPropertyChanged("Items");
         }
 
         public class BaseItem
