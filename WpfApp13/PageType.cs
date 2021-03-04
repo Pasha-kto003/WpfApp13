@@ -4,6 +4,7 @@
     {
         ListItems,
         CreateItem,
-        ViewItem
+        ViewItem,
+        EditRecipe
     }
 }

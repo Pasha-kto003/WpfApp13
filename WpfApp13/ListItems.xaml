@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfApp13"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="500"
+      d:DesignHeight="450" d:DesignWidth="500" d:Background="White"
       Title="Список предметов">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <ListView ItemsSource="{Binding Items}">
+        <ListView ItemsSource="{Binding Items}" Margin="5">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}" Width="350"/>
@@ -21,7 +21,8 @@
             </ListView.View>
         </ListView>
         <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
-            <Button Content="Создать" Command="{Binding CreateItem}" Padding="5"/>
+            <Button Content="Редактор рецептов" Command="{Binding EditRecipe}" Padding="2" Margin="5 0 5 5" Width="150"/>
+            <Button Content="Создать предметы" Command="{Binding CreateItem}" Padding="2" Margin="0 0 5 5" Width="150"/>
         </StackPanel>
     </Grid>
 </Page>

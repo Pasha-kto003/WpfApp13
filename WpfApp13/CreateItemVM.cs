@@ -7,22 +7,30 @@ namespace WpfApp13
 {
     public class CreateItemVM : Mvvm1125.MvvmNotify, IPageVM
     {
-
         public ObservableCollection<Item> Items { get; set; }
         public Item FirstItem { get; set; }
         public Item SecondItem { get; set; }
+        public string Message { get; set; }
         public Mvvm1125.MvvmCommand CreateItem { get; set; }
+        public Mvvm1125.MvvmCommand BackToList { get; set; }
         public List<BaseItem> BaseItems { get; set; }
         Model model;
 
         public void SetModel(Model model)
         {
             this.model = model;
+            Items = model.GetItems();
+            BackToList = new Mvvm1125.MvvmCommand(
+                () => PageContainer.ChangePageTo(PageType.ListItems),
+                () => true);
             CreateItem = new Mvvm1125.MvvmCommand(
-                () => { 
-                    if(model.TryJoin(FirstItem, SecondItem)) 
-                        PageContainer.ChangePageTo(PageType.ListItems); }, 
-                () => FirstItem != null && SecondItem != null);
+                () => {
+                    if (model.TryJoin(FirstItem, SecondItem))
+                        Message = "Вы создали новый предмет!";
+                    else
+                        Message = "Невозможно!";
+                    NotifyPropertyChanged("Message");},
+                () => FirstItem != null & SecondItem != null);
             BaseItems = new List<BaseItem>();
             BaseItems.Add(new BaseItem { 
                 Name = "Корень имбиря", 

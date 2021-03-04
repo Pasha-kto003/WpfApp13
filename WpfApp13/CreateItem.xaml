@@ -13,16 +13,19 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Создание базовых предметов" Margin="5">
-            <ListBox ItemsSource="{Binding BaseItems}" BorderThickness="0" HorizontalContentAlignment="Stretch">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DockPanel LastChildFill="False" Margin="0 3 0 0">
-                            <TextBlock Text="{Binding Name}" DockPanel.Dock="Left"/>
-                            <Button Content="Создать" Command="{Binding CreateBaseItem}" DockPanel.Dock="Right"/>
-                        </DockPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <DockPanel LastChildFill="False">
+                <ListBox ItemsSource="{Binding BaseItems}" BorderThickness="0" HorizontalContentAlignment="Stretch" DockPanel.Dock="Top">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DockPanel LastChildFill="False" Margin="0 3 0 0">
+                                <TextBlock Text="{Binding Name}" DockPanel.Dock="Left"/>
+                                <Button Content="Создать" Command="{Binding CreateBaseItem}" DockPanel.Dock="Right"/>
+                            </DockPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button Command="{Binding BackToList}" Content="Назад" Margin="5" Padding="2" DockPanel.Dock="Bottom"/>
+            </DockPanel>
         </GroupBox>
         <GroupBox Header="Создание предметов" Grid.Column="1" Margin="5">
             <DockPanel Margin="5" LastChildFill="False">
@@ -30,6 +33,7 @@
                 <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding FirstItem}" DockPanel.Dock="Top" DisplayMemberPath="Name"/>
                 <TextBlock Text="Выберите второй предмет" Margin="0 10 0 0" DockPanel.Dock="Top"/>
                 <ComboBox ItemsSource="{Binding Items}" SelectedItem="{Binding SecondItem}" DockPanel.Dock="Top" DisplayMemberPath="Name"/>
+                <TextBlock Text="{Binding Message}" DockPanel.Dock="Top" Margin="0 100 0 0" TextAlignment="Center" FontSize="16"/>
                 <Button Content="Создать" Command="{Binding CreateItem}" Margin="0 10 0 0" DockPanel.Dock="Bottom" Padding="2"/>
             </DockPanel>
         </GroupBox>

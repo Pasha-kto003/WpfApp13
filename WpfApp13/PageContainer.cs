@@ -47,6 +47,7 @@ namespace WpfApp13
         {
             RegisterPageType(PageType.ListItems, typeof(ListItems), typeof(ListItemsVM));
             RegisterPageType(PageType.CreateItem, typeof(CreateItem), typeof(CreateItemVM));
+            RegisterPageType(PageType.EditRecipe, typeof(EditRecipe), typeof(EditRecipeVM));
         }
     }
 }

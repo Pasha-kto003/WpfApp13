@@ -9,6 +9,7 @@ namespace WpfApp13
     { 
         public ObservableCollection<Item> Items { get; set; }
         public Mvvm1125.MvvmCommand CreateItem { get; set; }
+        public Mvvm1125.MvvmCommand EditRecipe { get; set; }
         Model model;
 
         public void SetModel(Model model)
@@ -18,6 +19,9 @@ namespace WpfApp13
             model.ItemsChanged += Model_ItemsChanged;   
             CreateItem = new Mvvm1125.MvvmCommand(
                 () => PageContainer.ChangePageTo(PageType.CreateItem), 
+                () => true);
+            EditRecipe = new Mvvm1125.MvvmCommand(
+                () => PageContainer.ChangePageTo(PageType.EditRecipe),
                 () => true);
         }
 

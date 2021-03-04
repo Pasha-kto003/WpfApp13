@@ -7,7 +7,7 @@ namespace WpfApp13
 {
     public class Inventory
     {
-        public List<Item> Items { get; private set; } = new List<Item>();
+        public List<Item> Items { get; set; } = new List<Item>();
 
         internal void IncrementItem(Item item)
         {

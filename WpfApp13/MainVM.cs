@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfApp13
@@ -17,6 +18,8 @@ namespace WpfApp13
             PageContainer.SetModel(model);
             CurrentPage = PageContainer.GetPageByType(PageType.ListItems);
             PageContainer.CurrentPageChanged += PageContainer_CurrentPageChanged;
+            model.Load();
+            Application.Current.Exit += (o, e) => model.Save();
         }
 
         private void PageContainer_CurrentPageChanged(object sender, PageType e)
