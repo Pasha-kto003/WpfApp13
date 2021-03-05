@@ -27,12 +27,6 @@
                 <TextBox Text="{Binding Result}" MinWidth="150"/>
             </StackPanel>
         </StackPanel>
-        <ListBox ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}" Margin="5" DockPanel.Dock="Top">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding Recipe}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <ListBox ItemsSource="{Binding Recipes}" SelectedItem="{Binding SelectedRecipe}" Margin="5" DockPanel.Dock="Top"/>
     </DockPanel>
 </Page>
